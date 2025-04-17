@@ -28,4 +28,14 @@ public class ReactiveUser implements Persistable<String>{
 	private LocalDateTime createdAt;
 	@Transient
 	private boolean isNew;
+	// ✅ This is required by Persistable
+    @Override
+    public boolean isNew() {
+        return isNew;
+    }
+
+    // Optional helper for creation
+    public void markNew() {
+        this.isNew = true;
+    }
 }

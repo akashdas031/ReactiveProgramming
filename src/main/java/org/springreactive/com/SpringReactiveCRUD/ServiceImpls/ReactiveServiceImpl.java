@@ -24,7 +24,7 @@ public class ReactiveServiceImpl implements ReactiveService{
 		String userId=UUID.randomUUID().toString().substring(10).replaceAll("-", "").trim();
 		user.setCreatedAt(LocalDateTime.now());
 		user.setId(userId);
-		user.setNew(true);
+		user.markNew();
 		Mono<ReactiveUser> createdUser = this.repo.save(user);
 		return createdUser;
 	}
@@ -48,7 +48,7 @@ public class ReactiveServiceImpl implements ReactiveService{
 	            existingUser.setName(updatedUserData.getName());
 	            existingUser.setEmail(updatedUserData.getEmail());
 	            return repo.save(existingUser);
-	        }).log();
+	        });
 	}
 	@Override
 	public Mono<Void> deleteUser(String userId) {

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -48,10 +49,10 @@ public class ReactiveController {
 	
 	//update user
 	
-	@PatchMapping("/updateUser/{id}")
+	@PutMapping("/updateUser/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public Mono<ReactiveUser> updateUser(@RequestBody ReactiveUser user,@PathVariable("id") String id){
-		return this.updateUser(user, id);
+	public Mono<ReactiveUser> updateUserDetails(@RequestBody ReactiveUser user,@PathVariable("id") String id){
+		return this.service.updateUser(user, id);
 	}
 	@DeleteMapping("/deleteUser/{id}")
 	@ResponseStatus(HttpStatus.OK)
